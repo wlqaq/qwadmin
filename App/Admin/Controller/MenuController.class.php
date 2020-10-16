@@ -100,6 +100,7 @@ class MenuController extends ComController
 
     public function add()
     {
+
         $option = M('auth_rule')->order('o ASC')->select();
         $option = $this->getMenu($option);
         $this->assign('option', $option);
