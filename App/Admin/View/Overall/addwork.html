@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!--
+工作报告模块
+-->
+
+        <!DOCTYPE html>
+        <html lang="zh-CN">
+        <head>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+            <meta charset="utf-8" />
+            <title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+            <meta name="keywords" content="{$Think.CONFIG.keywords}" />
+            <meta name="description" content="{$Think.CONFIG.description}" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+            <style type="text/css" >
+                td {
+                    border-color: #000000;
+                    border-style: solid outset outset;
+                    border-width: thin;
+                    background-repeat: no-repeat;
+                }
+                .input{
+                    height: 50px;
+                }
+                .body{
+                    font-family:simsun;
+                }
+            </style>
+
+            <include file="Public/head" />
+        </head>
+
+<body class="no-skin">
+<include file="Public/header" />
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <include file="Public/sidebar" />
+    <div class="main-content">
+        <div class="main-content-inner">
+            <!-- #section:basics/content.breadcrumbs -->
+            <include file="Public/breadcrumbs" />
+
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+                <include file="Public/set" />
+
+                <!-- /section:settings.box -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="row">
+                            <div class="container-fluid">
+                                <form action="" method="post">
+                                   <div class="form-group">
+                                       <lable >内容:</lable>
+                                        <input type="text" name="content" required>
+                                   </div>
+                                    <div class="form-group">
+                                        <lable > 要求: </lable>
+                                       <input type="text" name="requirements" required>
+                                    </div>
+
+                                    <input class="btn btn-info" type="submit" value="提交">
+                                </form>
+                            </div>
+
+                        </div>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+
+
+
+        </div>
+    </div>
+    <!-- /.main-content -->
+    <include file="Public/footer" />
+
+    <!-- /.main-container -->
+
+    <include file="Public/footerjs" />
+    <!-- inline scripts related to this page -->
+
+</body>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>

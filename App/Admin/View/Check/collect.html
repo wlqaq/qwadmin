@@ -1,0 +1,170 @@
+<!--
+工作报告模块
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+    <meta name="keywords" content="{$Think.CONFIG.keywords}" />
+    <meta name="description" content="{$Think.CONFIG.description}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link href="__PUBLIC__/qwadmin/css/bootstrap-switch.min.css" rel="stylesheet">
+    <style type="text/css" >
+        td {
+            border-color: #000000;
+            border-style: solid outset outset;
+            border-width: thin;
+            background-repeat: no-repeat;
+        }
+        .input{
+            height: 50px;
+        }
+        .body{
+            font-family:simsun;
+        }
+    </style>
+
+    <include file="Public/head" />
+</head>
+
+<body class="no-skin">
+<include file="Public/header" />
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <include file="Public/sidebar" />
+    <div class="main-content">
+        <div class="main-content-inner">
+            <!-- #section:basics/content.breadcrumbs -->
+            <include file="Public/breadcrumbs" />
+
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+                <include file="Public/set" />
+
+                <!-- /section:settings.box -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="row">
+                            <div class="container">
+
+                                <h3 class="h3 align-center">工作汇总</h3>
+                                <!-- HTML -->
+                                <!-- HTML -->
+                                <div class="form-group text-center">
+                                    <form action="" method="post">
+                                        <input type="text" name="year1" maxlength="4" style="height: 20px;width: 60px;" value="<php> if(date('m')>8|| date('m')<3){echo date('Y');}else{echo date('Y')-1;}  </php>">
+                                        至<input type="text" name="year2" maxlength="4" value="<php> if(date('m')>8|| date('m')<3){echo date('Y')+1;}</php>" style="height: 20px;width: 60px;">学年
+                                        第<input name="term" value="<php> if(date('m')>8|| date('m')<3){echo '一';}else{echo '二';}  </php>" type="text" maxlength="2" style="height: 20px;width: 60px;">学期
+
+                                        第
+                                        <select name="week" id="">
+
+                                            <foreach name="week" item="vo" >
+                                                <option  value='{$vo.id}' <if condition="$w eq $vo['id']">selected</if> > {$vo.name} </option>
+                                            </foreach>
+                                        </select>
+                                        周
+                                        <input type="checkbox" name="type" class="bootstrap-switch" {$jh}  id="checkbox"/>
+                                        <input type="submit" class="btn btn-info btn-xs" value="查看">
+                                    </form>
+
+                                </div>
+
+
+                                    <table class="table table-bordered" contenteditable="true">
+
+                                        <thead>
+
+                                        <tr >
+
+
+                                        </tr>
+                                        <tr>
+                                            <th style="width: 10%">序号</th>
+                                            <th style="width: 40%">内容</th>
+                                            <th style="width: 10%">拟完成时间</th>
+                                            <th style="width: 40%">备注</th>
+
+                                        </tr>
+                                        </thead>
+
+
+
+                                        <tbody>
+                                        <volist name="reportlist" id="reportlists" empty="暂时没有数据">
+                                            <tr>
+                                                <td>{$reportlists.id}</td>
+                                                <td>{$reportlists.content}</td>
+                                                <td>{$reportlists.finsh}</td>
+                                                <td>{$reportlists.comment}</td>
+                                            </tr>
+                                        </volist>
+
+                                        </tbody>
+
+
+
+
+
+                                    </table>
+                                    <hr class="hr-4">
+                                </foreach>
+
+
+
+
+
+
+                            </div>
+
+
+
+                            <script src="__PUBLIC__/qwadmin/js/jquery.js"></script>
+
+                            <script src="__PUBLIC__/qwadmin/js/bootstrap-switch.min.js"></script>
+                            <!-- JS -->
+                            <script type="text/javascript">
+                                $(function(){
+                                    /* 初始化控件 */
+                                    $("#checkbox").bootstrapSwitch({
+                                        onText : "总结",      // 设置ON文本
+                                        offText : "计划",    // 设置OFF文本
+                                        onColor : "primary",// 设置ON文本颜色     (info/success/warning/danger/primary)
+                                        offColor : "primary",  // 设置OFF文本颜色        (info/success/warning/danger/primary)
+                                        size : "normal",    // 设置控件大小,从小到大  (mini/small/normal/large)
+                                        // 当开关状态改变时触发
+
+                                    });
+                                });
+                            </script>
+
+
+
+                            {$page}
+                        </div>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+
+
+
+        </div>
+    </div>
+    <!-- /.main-content -->
+    <include file="Public/footer" />
+
+    <!-- /.main-container -->
+
+    <include file="Public/footerjs" />
+    <!-- inline scripts related to this page -->
+
+</body>
+</html>

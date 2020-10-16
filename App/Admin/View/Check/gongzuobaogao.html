@@ -1,0 +1,249 @@
+<!--
+工作报告模块
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+    <meta name="keywords" content="{$Think.CONFIG.keywords}" />
+    <meta name="description" content="{$Think.CONFIG.description}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <style type="text/css" >
+        td {
+            border-color: #000000;
+            border-style: solid outset outset;
+            border-width: thin;
+            background-repeat: no-repeat;
+        }
+        .input{
+            height: 50px;
+        }
+        .body{
+            font-family:simsun;
+        }
+    </style>
+
+    <include file="Public/head" />
+</head>
+
+<body class="no-skin">
+<include file="Public/header" />
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <include file="Public/sidebar" />
+    <div class="main-content">
+        <div class="main-content-inner">
+            <!-- #section:basics/content.breadcrumbs -->
+            <div class="breadcrumbs" id="breadcrumbs">
+                <script type="text/javascript">
+                    try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+                </script>
+
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="ace-icon fa fa-home home-icon"></i>
+                        <a href="{:U('index/index')}">首页</a>
+                    </li>
+
+                    <li>
+                        <a href="#">每周工作报告</a>
+                    </li>
+                    <li class="active">工作报告</li>
+
+                </ul><!-- /.breadcrumb -->
+            </div>
+
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+                <include file="Public/set" />
+
+                <!-- /section:settings.box -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="row">
+
+                            <form action="{:U('CheckData/gongzuobaogao')}" method="post" class="form-actions">
+                                <input type="hidden" name="user" value="{$user.user}">
+                                <table class="table table-striped table-bordered" name="zj">
+                                    <caption class="center"><h3>工作总结</h3></caption>
+                                    <thead class="table-header">
+                                    <tr class="">
+                                        <th class="align-center" width="10%">序号</th>
+                                        <th class="align-center" width="40%">
+                                            <input type="text" name="zjyear1" maxlength="4" style="height: 20px;width: 60px;" value="<php> if(date('m')>8|| date('m')<3){echo date('Y');}else{echo date('Y')-1;}  </php>">
+                                            至<input type="text" name="zjyear2" maxlength="4" value="<php> if(date('m')>8|| date('m')<3){echo date('Y')+1;}</php>" style="height: 20px;width: 60px;">学年
+                                            第<input name="zjterm" value="<php> if(date('m')>8|| date('m')<3){echo '一';}else{echo '二';}  </php>" type="text" maxlength="2" style="height: 20px;width: 60px;">学期
+                                            第<select name="zjweek" id="">
+
+                                            <foreach name="week" item="vo">
+                                                <option value="{$vo.id}">{$vo.name}</option>
+                                            </foreach>
+                                        </select>周
+                                            总结
+                                        </th>
+                                        <th class="align-center" width="10%">拟完成时间</th>
+                                        <th class="align-center" width="40%">备注</th>
+
+                                    </tr>
+
+                                    </thead>
+                                    <tbody id="list">
+                                    <tr class="" id="gzbglist">
+                                        <td><input   class="align-center" type="text" style="width: 100%;"></td>
+                                        <td><input name="zjcontent[]"  value=""  type="text" style="width: 100%"></td>
+                                        <td><input name="zjfinsh[]" value="" type="text" style="width: 100%"></td>
+                                        <td><input name="zjcomment[]" value="" type="text" style="width: 100%"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="btn btn-default"  style="width: 100%" id="addlist">添加</div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+
+                                <table class="table table-striped table-bordered" name="jh">
+                                    <input type="hidden" value="1" name="type[]">
+                                    <caption class="center"><h3>工作计划</h3></caption>
+                                    <thead class="table-header">
+                                    <tr class="">
+                                        <th class="align-center" width="10%">序号</th>
+                                        <th class="align-center" width="40%">
+                                            <input type="text" name="year1" maxlength="4" style="height: 20px;width: 60px;" value="<php> if(date('m')>8|| date('m')<3){echo date('Y');}else{echo date('Y')-1;}  </php>">
+                                            至<input type="text" name="year2" maxlength="4" value="<php> if(date('m')>8|| date('m')<3){echo date('Y')+1;}</php>" style="height: 20px;width: 60px;">学年
+                                            第<input name="term" value="<php> if(date('m')>8|| date('m')<3){echo '一';}else{echo '二';}  </php>" type="text" maxlength="2" style="height: 20px;width: 60px;">学期
+                                            第<select name="week" id="">
+
+                                            <foreach name="week" item="vo">
+                                                <option value="{$vo.id}">{$vo.name}</option>
+                                            </foreach>
+                                        </select>周
+                                            计划
+                                        </th>
+                                        <th class="align-center" width="10%">拟完成时间</th>
+                                        <th class="align-center" width="40%">备注</th>
+
+                                    </tr>
+
+                                    </thead>
+                                    <tbody id="jhlist">
+                                    <tr class="" id="jhgzbglist">
+                                        <td><input   class="align-center" type="text" style="width: 100%;"></td>
+                                        <td><input name="content[]"  value=""  type="text" style="width: 100%"></td>
+                                        <td><input name="finsh[]" value="" type="text" style="width: 100%"></td>
+                                        <td><input name="comment[]" value="" type="text" style="width: 100%"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="btn btn-default"  style="width: 100%" id="jhaddlist">添加</div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+                                <div class="form-group">
+                                    <div class="col-xs-4"></div><!--占位-->
+                                    <input class="col-xs-4 align-center btn btn-xs btn-info" style="width: 30%;height: 40px"  type="submit" value="提交" id="">
+                                </div>
+                            </form>
+                            <script src="__PUBLIC__/qwadmin/js/jquery.js"></script>
+                            <script type="text/javascript">
+                                $(document).ready(function(){
+                                    //增加列
+                                    function addcol() {
+                                        $('#list>tr:eq(-2)').after("<tr >"+$('#gzbglist').html()+"</tr>")
+                                    }
+                                    function delcol() {
+                                        var str ="<tr >" +$('#list>tr:last-child').html()+"</tr>";
+                                    }
+                                    //事件驱动
+                                    // $("#list>tr>td:first-child > input").index()
+                                    $('#addlist').click(function () {
+                                        addcol();
+                                        len+=1;//索引加1
+                                        addindex();
+                                    })
+                                    //初始化表格
+                                    for (var i = 1;i<=2;i++){
+                                        addcol()
+                                    }
+                                    //初始化索引
+                                    var len = $('#list>tr').length;
+                                    for (var i = 1;i<len;i++){
+                                        $("#list>tr>td:first-child > input").eq(i-1).val(i);
+                                    }
+                                    //添加表格列索引
+                                    function addindex(){
+                                        for (var i = 1;i<len;i++){
+                                            $("#list>tr>td:first-child > input").eq(i-1).val(i);
+                                        }
+                                    }
+                                });
+
+
+                            </script>
+                            <script type="text/javascript">
+                                $(document).ready(function(){
+                                    //增加列
+                                    function jhaddcol() {
+                                        $('#jhlist>tr:eq(-2)').after("<tr >"+$('#jhgzbglist').html()+"</tr>")
+                                    }
+                                    function jhdelcol() {
+                                        var str ="<tr >" +$('#jhlist>tr:last-child').html()+"</tr>";
+                                    }
+                                    //事件驱动
+                                    // $("#list>tr>td:first-child > input").index()
+                                    $('#jhaddlist').click(function () {
+                                        jhaddcol();
+                                        len+=1;//索引加1
+                                        jhaddindex();
+                                    })
+                                    //初始化表格
+                                    for (var i = 1;i<=2;i++){
+                                        jhaddcol()
+                                    }
+                                    //初始化索引
+                                    var len = $('#jhlist>tr').length;
+                                    for (var i = 1;i<len;i++){
+                                        $("#jhlist>tr>td:first-child > input").eq(i-1).val(i);
+                                    }
+                                    //添加表格列索引
+                                    function jhaddindex(){
+                                        for (var i = 1;i<len;i++){
+                                            $("#jhlist>tr>td:first-child > input").eq(i-1).val(i);
+                                        }
+                                    }
+                                });
+
+
+                            </script>
+
+                            {$page}
+                        </div>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+
+
+
+        </div>
+    </div>
+    <!-- /.main-content -->
+    <include file="Public/footer" />
+
+    <!-- /.main-container -->
+
+    <include file="Public/footerjs" />
+    <!-- inline scripts related to this page -->
+
+</body>
+</html>

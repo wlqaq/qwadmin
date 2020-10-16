@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="hear" align="center">
+			<form action=" {:U('admin/check/xunc')}" method="post">
+				<h2>
+				<input type="text" maxlength="4" style="height: 20px;width: 60px;">
+			至<input type="text" maxlength="4" style="height: 20px;width: 60px;">学年 
+			第<input type="text" maxlength="2" style="height: 20px;width: 60px;">学期 
+			第<input type="text" maxlength="2" style="height: 20px;width: 60px;">周 
+			
+				时间： <input type="time" name="user_time" />
+			填报人：{$user.user}
+			
+			</h2>
+			
+			
+			<table border="1px" cellspacing="0" cellpadding="0" width="620px">
+									
+						<tr>
+							<td width="620px" height="50px" colspan="4">晚班管理工作记录表：</td>
+						</tr>
+								
+						<tr>
+							<td rowspan="9" align="center">晚上</td>
+							<td align="center" rowspan="6">必须检查事项</td>
+							<td align="center" colspan="2">&nbsp;</td>
+						</tr>
+								
+						<tr>
+							<td>电源关闭</td>
+							<td><input type="text" style="width: 170px;" maxlength="10" name="demo" id=" testTable" value=" " /></td>
+						</tr>
+								
+						<tr>
+							<td>桌椅摆齐</td>
+							<td><input type="text" style="width: 170px;" maxlength="30" name="demo" id=" testTable" value=" " /></td>
+						</tr>
+								
+						<tr>
+							<td>清倒垃圾</td>
+							<td><input type="text" style="width: 170px;" maxlength="30" name="demo" id=" testTable" value=" " /></td>
+						</tr>
+								
+						<tr>
+							<td>锁闭门窗</td>
+							<td><input type="text" style="width: 170px;" maxlength="30" name="demo" id=" testTable" value=" " /></td>
+						</tr>
+								
+						<tr>
+							<td>楼道巡查</td>
+							<td><input type="text" style="width: 170px;" maxlength="30" name="demo" id=" testTable" value=" " /></td>
+						</tr>
+								
+						<tr>
+							<td rowspan="2" align="center">执勤评价</td>
+							<td><input type="text" style="width: 170px;" maxlength="30" name="demo" id=" testTable" value=" " /></td>
+							<td><input type="text" style="width: 170px;" maxlength="30" name="demo" id=" testTable" value=" " /></td>
+						</tr>
+								
+						<tr>
+							<td><input type="text" style="width: 170px;" maxlength="30" name="demo" id=" testTable" value=" " /></td>
+							<td><input type="text" style="width: 170px;" maxlength="30" name="demo" id=" testTable" value=" " /></td>
+						</tr>
+								
+						<tr>
+							<td align="center">其他事宜</td>
+							<td colspan="2">
+								<input type="text" style="width:370px;" maxlength="50" name="demo" id=" testTable" value=" " />
+							</td>
+						</tr>
+								
+								<tr style="width:620px" >
+									<td align="center" rowspan="3">数据采集目标</td>
+									<td align="center">1</td>
+									<td colspan="4">（1）宏观维度上采集每日巡查工作情况，督办落实到位，
+									形成工作量统计及其佐证材料（2）减少每次数据采集任务，临时填补空缺资料
+									情况，数据真实度（3）形成投诉问题及时情况跟踪，对师生座谈会反馈问题</td>
+								</tr>
+								<tr>
+									<td align="center">2</td>
+									<td colspan="4"><textarea cols="50" rows="4" style="overflow: hidden;"></textarea></td>
+								</tr>
+								<tr>
+									<td align="center">3</td>
+									<td colspan="4"><textarea cols="50" rows="4" style="overflow: hidden;"></textarea></td>
+								</tr>
+							</tbody>
+						</table>
+						<input type="submit" value="提交" ><input type="reset" value="重置" >
+				</form>
+		
+	</body>
+</html>

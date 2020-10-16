@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+			<include file="Public/sidebar" />
+			<div class="main-content">
+		<div class="main-content-inner">
+			<include file="Public/breadcrumbs" />
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<div class="row">
+
+								{$page}
+									<div class="container" style="margin:0 auto;width: 1024px;">
+										<form action="{:U('CheckData/jcqrb')}" method="post">
+
+											<div class="hear" align="center">
+												<h2><input type="text" name="year1" maxlength="4" style="height: 20px;width: 60px;" value="<php> if(date('m')>8|| date('m')<3){echo date('Y');}else{echo date('Y')-1;}  </php>">
+													至<input type="text" name="year2" maxlength="4" value="<php> if(date('m')>8|| date('m')<3){echo date('Y')+1;}</php>" style="height: 20px;width: 60px;">学年
+													第<input name="term" value="<php> if(date('m')>8|| date('m')<3){echo '一';}else{echo '二';}  </php>" type="text" maxlength="2" style="height: 20px;width: 60px;">学期电脑室工作检查确认表
+													<input type="text" readonly value="{$weektype}" name="weekname" > <br />
+													电脑
+													<select  name="room"  size="1">
+														<volist name="room" id="rlist">
+															<option value="{$rlist.room}">{$rlist.room}</option>
+														</volist>
+
+													</select>
+													室
+											</div>
+
+											<table class="table table-bordered" >
+												<thead class="center">
+
+
+												<td >检查项目</td>
+												<td >要求</td>
+												<td >准备情况</td>
+												<td >备注</td>
+
+												</thead>
+
+												<tbody>
+												<volist name="fworks" id="fwork">
+													<tr>
+
+														<td  ><input type="text" style="width: 100%!important;" name="content[]" readonly  id="" value="{$fwork.content}" /></td>
+														<td  ><input type="text" style="width: 100%!important;" name="requirement[]" readonly id="" value="{$fwork.requirements}" /></td>
+														<td  >
+															<select name = 'language[]'  >
+																<option value="完成">完成</option>
+																<option value="未完成" selected>未完成</option>
+																<option value="其他">其他</option>
+															</select>
+														</td>
+														<td  ><input type="text" style="width: 100%!important;" name="beizhu[]" id="" value="" placeholder="未完成或其他请填写"/></td>
+													</tr>
+												</volist>
+												<tr>
+
+													<td  ><input type="text" style="width: 100%!important;" name="content[]" readonly  id="" value="其他需要说明事项" /></td>
+													<td  ><input type="text" style="width: 100%!important;" name="requirement[]" id="" value="" placeholder="填写其他事宜" /></td>
+													<td  > <select name = 'language[]'  >
+														<option value="完成">完成</option>
+														<option value="未完成" selected>未完成</option>
+														<option value="其他">其他</option>
+													</select></td>
+													<td  ><input type="text" style="width: 100%!important;" name="beizhu[]" id="" value="" placeholder="未完成或其他请填写"/></td>
+												</tr>
+
+												</tbody>
+											</table>
+											<div id="">
+												<h3 align="right">管理员签名：<input type="text" name="user" readonly value="{$user.user}" /></h3>
+												<h3 align="right">时间日期：<input type="text" name="shijian"  value="<php>echo  date('Y-m-d',time());</php>" /></h3>
+											</div>
+											<h3 class="text-center"><input class="btn btn-info"  id="sub" type="submit" value="提交" /></h3>
+										</form>
+									</div>
+
+
+									<script type="text/javascript">
+										window.onload = function () {
+											var sub = document.getElementById('sub')
+											sub.onclick =function (event) {
+												var bool = confirm("您确定要提交？")?true:false;
+												if (bool){
+													return true
+												}
+												var event = event||window.event;
+												event.preventDefault();
+												window.event.returnValue = bool;
+											}
+										}
+									</script>
+
+									<script type="text/javascript">
+										$(document).ready(function (){
+											var arr = $("input[name='beizhu[]']");
+											var arrtype = $("select[name='language[]']");
+											console.log(arr)
+											for (var i = 0;i<arr.length;i++){
+												$("input[name='beizhu[]']").attr('required','required')
+											}
+											$("select[name='language[]']").change( () => {
+												for (var i = 0;i<arr.length;i++){
+													if (arrtype.eq(i).val() == "完成"){
+														$("input[name='beizhu[]']").eq(i).removeAttr('required')
+													}else if (arrtype.eq(i).val() == "未完成" && arrtype.eq(i).val() == "其他"){
+														$("input[name='beizhu[]']").eq(i).attr('required','required')
+													}
+													//$("input[name='beizhu[]']").attr('required','required')
+												}
+
+
+
+											})
+										})
+
+									</script>
+								</div>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+			
+			
+			
+			</div>
+		</div>
+			<!-- /.main-content -->
+			<include file="Public/footer" />
+			
+		<!-- /.main-container -->
+
+		<include file="Public/footerjs" />
+		<!-- inline scripts related to this page -->
+
+	</body>
+</html>

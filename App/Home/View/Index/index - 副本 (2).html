@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<title>{$Think.CONFIG.sitename}</title>
+<!--link rel="stylesheet" type="text/css" href="{$Think.CONFIG.URL}/style.css" />
+    <script type="text/javascript" src="{$Think.CONFIG.URL}/js.js"></script-->
+<meta name="keywords" content="{$Think.CONFIG.keywords}"/>
+<meta name="description" content="{$Think.CONFIG.description}"/>
+<style type="text/css" >
+td {
+	border-color: #000000;
+	border-style: solid outset outset;
+	border-width: thin;
+	background-repeat: no-repeat;
+}
+.input{
+		height: 50px;
+	}
+
+</style>
+</head>
+<body>
+<div class="hear" align="center">
+  <h1>信息港公共机房日常巡查记录表</h1>
+</div>
+<div class="file_holder">
+<div class="file_title"> <i class="octicon octicon-book"></i> </div>
+<form class="main" style=" width:980px;margin:0 auto;" method="post" action="{:U('/home/index/add')}" >
+<table cellspacing="0" cellpadding="0" width="1024px">
+  <tr>
+    <td> 周次：
+      <input type="text" style="height:20px;width:80px;"  ></td>
+    
+    <td>时间:
+      <select name="week">
+        <option value="星期一">星期一</option>
+        <option value="星期二">星期二</option>
+        <option value="星期三">星期三</option>
+        <option value="星期四">星期四</option>
+        <option value="星期五">星期五</option>
+        <option value="星期六">星期六</option>
+        <option value="星期日">星期日</option>
+      </select></td>
+      <td>填报人：
+      <select name="people">
+        <option value="陈首忠">陈首忠</option>       
+        <option value="林志峰">林志峰</option>
+        <option value="廖桂芳">廖桂芳</option>
+        <option value="王斌">王斌</option>
+        <option value="曾俊">曾俊</option>
+        <option value="钟文新">钟文新</option>
+      </select></td>
+  </tr>
+  <tr>
+   <td>序号</td>
+   <td>机房</td>
+   <td>设备情况</td>
+   <td>卫生情况</td>
+   <td>日志情况</td>
+   <td>其他情况</td>
+    
+  </tr>
+  <tr>
+  	<td rowspan="4">上午</td>
+		<td height="46"><select name="classes[]" >
+  	<option value="电脑室一">电脑室一</option>
+  	<option value="电脑室二">电脑室二</option>
+  	<option value="电脑室三">电脑室三</option>
+  	<option value="电脑室四">电脑室四</option>
+  	<option value="电脑室五">电脑室五</option>
+  	<option value="电脑室六">电脑室六</option>
+  	<option value="电脑室七">电脑室七</option>
+  	<option value="电脑室八">电脑室八</option>
+  	<option value="电脑室九">电脑室九</option>
+  	<option value="电脑室十">电脑室十</option>
+  	<option value="电脑室十一">电脑室十一</option>
+  	<option value="电脑室十二">电脑室十二</option>
+  	<option value="电脑室十三">电脑室十三</option>
+  	<option value="电脑室十四">电脑室十四</option>
+  	<option value="电脑室十五">电脑室十五</option>
+  	<option value="电脑室十六">电脑室十六</option>
+  	<option value="电脑室十七">电脑室十七</option>
+  	<option value="电脑室十八">电脑室十八</option>
+  	<option value="电脑室十九">电脑室十九</option>
+  	<option value="电脑室二十">电脑室二十</option>
+  	<option value="语音室一">语音室一</option>
+  	<option value="语音室二">语音室二</option>
+  	<option value="语音室三">语音室三</option>  	
+  	</select></td>
+  	<td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+     <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td> 
+  </tr>
+  <tr>
+  	<td height="46"><select name="classes[]" >
+  	<option value="电脑室一">电脑室一</option>
+  	<option value="电脑室二">电脑室二</option>
+  	<option value="电脑室三">电脑室三</option>
+  	<option value="电脑室四">电脑室四</option>
+  	<option value="电脑室五">电脑室五</option>
+  	<option value="电脑室六">电脑室六</option>
+  	<option value="电脑室七">电脑室七</option>
+  	<option value="电脑室八">电脑室八</option>
+  	<option value="电脑室九">电脑室九</option>
+  	<option value="电脑室十">电脑室十</option>
+  	<option value="电脑室十一">电脑室十一</option>
+  	<option value="电脑室十二">电脑室十二</option>
+  	<option value="电脑室十三">电脑室十三</option>
+  	<option value="电脑室十四">电脑室十四</option>
+  	<option value="电脑室十五">电脑室十五</option>
+  	<option value="电脑室十六">电脑室十六</option>
+  	<option value="电脑室十七">电脑室十七</option>
+  	<option value="电脑室十八">电脑室十八</option>
+  	<option value="电脑室十九">电脑室十九</option>
+  	<option value="电脑室二十">电脑室二十</option>
+  	<option value="语音室一">语音室一</option>
+  	<option value="语音室二">语音室二</option>
+  	<option value="语音室三">语音室三</option>  	
+  	</select></td>
+  	<td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+     <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td> 
+  </tr>
+  <tr>
+  	<td height="44"><select name="classes[]" >
+  	<option value="电脑室一">电脑室一</option>
+  	<option value="电脑室二">电脑室二</option>
+  	<option value="电脑室三">电脑室三</option>
+  	<option value="电脑室四">电脑室四</option>
+  	<option value="电脑室五">电脑室五</option>
+  	<option value="电脑室六">电脑室六</option>
+  	<option value="电脑室七">电脑室七</option>
+  	<option value="电脑室八">电脑室八</option>
+  	<option value="电脑室九">电脑室九</option>
+  	<option value="电脑室十">电脑室十</option>
+  	<option value="电脑室十一">电脑室十一</option>
+  	<option value="电脑室十二">电脑室十二</option>
+  	<option value="电脑室十三">电脑室十三</option>
+  	<option value="电脑室十四">电脑室十四</option>
+  	<option value="电脑室十五">电脑室十五</option>
+  	<option value="电脑室十六">电脑室十六</option>
+  	<option value="电脑室十七">电脑室十七</option>
+  	<option value="电脑室十八">电脑室十八</option>
+  	<option value="电脑室十九">电脑室十九</option>
+  	<option value="电脑室二十">电脑室二十</option>
+  	<option value="语音室一">语音室一</option>
+  	<option value="语音室二">语音室二</option>
+  	<option value="语音室三">语音室三</option>  	
+  	</select></td>
+  	<td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+     <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td> 
+  </tr>
+  <tr>
+  	<td height="46"><select name="classes[]" >
+  	<option value="电脑室一">电脑室一</option>
+  	<option value="电脑室二">电脑室二</option>
+  	<option value="电脑室三">电脑室三</option>
+  	<option value="电脑室四">电脑室四</option>
+  	<option value="电脑室五">电脑室五</option>
+  	<option value="电脑室六">电脑室六</option>
+  	<option value="电脑室七">电脑室七</option>
+  	<option value="电脑室八">电脑室八</option>
+  	<option value="电脑室九">电脑室九</option>
+  	<option value="电脑室十">电脑室十</option>
+  	<option value="电脑室十一">电脑室十一</option>
+  	<option value="电脑室十二">电脑室十二</option>
+  	<option value="电脑室十三">电脑室十三</option>
+  	<option value="电脑室十四">电脑室十四</option>
+  	<option value="电脑室十五">电脑室十五</option>
+  	<option value="电脑室十六">电脑室十六</option>
+  	<option value="电脑室十七">电脑室十七</option>
+  	<option value="电脑室十八">电脑室十八</option>
+  	<option value="电脑室十九">电脑室十九</option>
+  	<option value="电脑室二十">电脑室二十</option>
+  	<option value="语音室一">语音室一</option>
+  	<option value="语音室二">语音室二</option>
+  	<option value="语音室三">语音室三</option>  	
+  	</select></td>
+  	<td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+     <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td> 
+  </tr>
+  <tr>
+  	<td rowspan="4">下午</td>
+  	<td height="43"><select name="classes" >
+  	<option value="电脑室一">电脑室一</option>
+  	<option value="电脑室二">电脑室二</option>
+  	<option value="电脑室三">电脑室三</option>
+  	<option value="电脑室四">电脑室四</option>
+  	<option value="电脑室五">电脑室五</option>
+  	<option value="电脑室六">电脑室六</option>
+  	<option value="电脑室七">电脑室七</option>
+  	<option value="电脑室八">电脑室八</option>
+  	<option value="电脑室九">电脑室九</option>
+  	<option value="电脑室十">电脑室十</option>
+  	<option value="电脑室十一">电脑室十一</option>
+  	<option value="电脑室十二">电脑室十二</option>
+  	<option value="电脑室十三">电脑室十三</option>
+  	<option value="电脑室十四">电脑室十四</option>
+  	<option value="电脑室十五">电脑室十五</option>
+  	<option value="电脑室十六">电脑室十六</option>
+  	<option value="电脑室十七">电脑室十七</option>
+  	<option value="电脑室十八">电脑室十八</option>
+  	<option value="电脑室十九">电脑室十九</option>
+  	<option value="电脑室二十">电脑室二十</option>
+  	<option value="语音室一">语音室一</option>
+  	<option value="语音室二">语音室二</option>
+  	<option value="语音室三">语音室三</option>  	
+  	</select></td>
+  	<td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+     <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td> 
+  </tr>
+  <tr>
+  	<td height="46"><select name="classes" >
+  	<option value="电脑室一">电脑室一</option>
+  	<option value="电脑室二">电脑室二</option>
+  	<option value="电脑室三">电脑室三</option>
+  	<option value="电脑室四">电脑室四</option>
+  	<option value="电脑室五">电脑室五</option>
+  	<option value="电脑室六">电脑室六</option>
+  	<option value="电脑室七">电脑室七</option>
+  	<option value="电脑室八">电脑室八</option>
+  	<option value="电脑室九">电脑室九</option>
+  	<option value="电脑室十">电脑室十</option>
+  	<option value="电脑室十一">电脑室十一</option>
+  	<option value="电脑室十二">电脑室十二</option>
+  	<option value="电脑室十三">电脑室十三</option>
+  	<option value="电脑室十四">电脑室十四</option>
+  	<option value="电脑室十五">电脑室十五</option>
+  	<option value="电脑室十六">电脑室十六</option>
+  	<option value="电脑室十七">电脑室十七</option>
+  	<option value="电脑室十八">电脑室十八</option>
+  	<option value="电脑室十九">电脑室十九</option>
+  	<option value="电脑室二十">电脑室二十</option>
+  	<option value="语音室一">语音室一</option>
+  	<option value="语音室二">语音室二</option>
+  	<option value="语音室三">语音室三</option>  	
+  	</select></td>
+  	<td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+     <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td> 
+  </tr>
+  <tr>
+  	<td height="46"><select name="classes" >
+  	<option value="电脑室一">电脑室一</option>
+  	<option value="电脑室二">电脑室二</option>
+  	<option value="电脑室三">电脑室三</option>
+  	<option value="电脑室四">电脑室四</option>
+  	<option value="电脑室五">电脑室五</option>
+  	<option value="电脑室六">电脑室六</option>
+  	<option value="电脑室七">电脑室七</option>
+  	<option value="电脑室八">电脑室八</option>
+  	<option value="电脑室九">电脑室九</option>
+  	<option value="电脑室十">电脑室十</option>
+  	<option value="电脑室十一">电脑室十一</option>
+  	<option value="电脑室十二">电脑室十二</option>
+  	<option value="电脑室十三">电脑室十三</option>
+  	<option value="电脑室十四">电脑室十四</option>
+  	<option value="电脑室十五">电脑室十五</option>
+  	<option value="电脑室十六">电脑室十六</option>
+  	<option value="电脑室十七">电脑室十七</option>
+  	<option value="电脑室十八">电脑室十八</option>
+  	<option value="电脑室十九">电脑室十九</option>
+  	<option value="电脑室二十">电脑室二十</option>
+  	<option value="语音室一">语音室一</option>
+  	<option value="语音室二">语音室二</option>
+  	<option value="语音室三">语音室三</option>
+  	</select></td>
+  	<td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+     <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td> 
+  </tr>
+  <tr>
+  	<td height="41"><select name="classes" >
+  	<option value="电脑室一">电脑室一</option>
+  	<option value="电脑室二">电脑室二</option>
+  	<option value="电脑室三">电脑室三</option>
+  	<option value="电脑室四">电脑室四</option>
+  	<option value="电脑室五">电脑室五</option>
+  	<option value="电脑室六">电脑室六</option>
+  	<option value="电脑室七">电脑室七</option>
+  	<option value="电脑室八">电脑室八</option>
+  	<option value="电脑室九">电脑室九</option>
+  	<option value="电脑室十">电脑室十</option>
+  	<option value="电脑室十一">电脑室十一</option>
+  	<option value="电脑室十二">电脑室十二</option>
+  	<option value="电脑室十三">电脑室十三</option>
+  	<option value="电脑室十四">电脑室十四</option>
+  	<option value="电脑室十五">电脑室十五</option>
+  	<option value="电脑室十六">电脑室十六</option>
+  	<option value="电脑室十七">电脑室十七</option>
+  	<option value="电脑室十八">电脑室十八</option>
+  	<option value="电脑室十九">电脑室十九</option>
+  	<option value="电脑室二十">电脑室二十</option>
+  	<option value="语音室一">语音室一</option>
+  	<option value="语音室二">语音室二</option>
+  	<option value="语音室三">语音室三</option>  	
+  	</select></td>
+  	<td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+     <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50" name="textfield" id="textfield"></td> 
+  </tr>
+  <tr>
+  	<td height="41" rowspan="2">晚上</td>
+  	<td height="41"><select name="classes" >
+  	<option value="电脑室一">电脑室一</option>
+  	<option value="电脑室二">电脑室二</option>
+  	<option value="电脑室三">电脑室三</option>
+  	<option value="电脑室四">电脑室四</option>
+  	<option value="电脑室五">电脑室五</option>
+  	<option value="电脑室六">电脑室六</option>
+  	<option value="电脑室七">电脑室七</option>
+  	<option value="电脑室八">电脑室八</option>
+  	<option value="电脑室九">电脑室九</option>
+  	<option value="电脑室十">电脑室十</option>
+  	<option value="电脑室十一">电脑室十一</option>
+  	<option value="电脑室十二">电脑室十二</option>
+  	<option value="电脑室十三">电脑室十三</option>
+  	<option value="电脑室十四">电脑室十四</option>
+  	<option value="电脑室十五">电脑室十五</option>
+  	<option value="电脑室十六">电脑室十六</option>
+  	<option value="电脑室十七">电脑室十七</option>
+  	<option value="电脑室十八">电脑室十八</option>
+  	<option value="电脑室十九">电脑室十九</option>
+  	<option value="电脑室二十">电脑室二十</option>
+  	<option value="语音室一">语音室一</option>
+  	<option value="语音室二">语音室二</option>
+  	<option value="语音室三">语音室三</option> 	
+  	</select></td>
+  	<td>
+    <input type="text" height="50px" name="textfield" id="textfield"></td>
+     <td>
+    <input type="text" height="50px" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50px" name="textfield" id="textfield"></td>
+    <td>
+    <input type="text" height="50px" name="textfield" id="textfield"></td> 
+  </tr> 
+</table>
+<input type="submit" value="提交" ><input type="reset" value="重置" >
+<form>
+</body>
+</html>

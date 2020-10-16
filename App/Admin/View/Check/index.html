@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>{$current['title']}-{$Think.CONFIG.title}</title>
+
+		<meta name="keywords" content="{$Think.CONFIG.keywords}" />
+		<meta name="description" content="{$Think.CONFIG.description}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<style type="text/css" >
+td {
+	border-color: #000000;
+	border-style: solid outset outset;
+	border-width: thin;
+	background-repeat: no-repeat;
+}
+.input{
+		height: 50px;
+	}
+.body{
+	font-family:simsun;
+}
+/*文件款内容*/
+.fcontent{
+
+	width: 100px;
+	height: 100px
+}
+.fhid{
+	opacity: 0;
+}
+
+.input{
+	height: 50px;
+}
+.body{
+	font-family:simsun;
+}
+
+</style>
+
+		<include file="Public/head" />
+   </head>
+
+	<body class="no-skin">
+		<include file="Public/header" />
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+			<include file="Public/sidebar" />
+			<div class="main-content">
+		<div class="main-content-inner">
+					<!-- #section:basics/content.breadcrumbs -->
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="{:U('index/index')}">首页</a>
+							</li>
+
+							<li>
+								<a href="#">
+									日常管理
+								</a>
+							</li>
+							<li class="active">日常巡查</li>
+
+						</ul><!-- /.breadcrumb -->
+					</div>
+
+					<!-- /section:basics/content.breadcrumbs -->
+					<div class="page-content">
+						<include file="Public/set" />
+
+						<!-- /section:settings.box -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<div class="row">
+									<div class="hear" align="center">
+										<form action="{:U('CheckData/xunch')}" method="post" enctype="multipart/form-data">
+											<h4>信息港公告机房日常巡查记录表 （电脑
+												<select name="room"  id="">
+													<volist name="room" id="rlist">
+														<option value="{$rlist.room}">{$rlist.room}</option>
+													</volist>
+
+												</select>
+
+												室)
+											</h4>
+											<br>
+											<input type="text" name="year1" maxlength="4" style="height: 20px;width: 60px;" value="<php> if(date('m')>8|| date('m')<3){echo date('Y');}else{echo date('Y')-1;}  </php>">
+											至<input type="text" name="year2" maxlength="4" value="<php> if(date('m')>8|| date('m')<3){echo date('Y')+1;}</php>" style="height: 20px;width: 60px;">学年
+											第<input name="term" value="<php> if(date('m')>8|| date('m')<3){echo '一';}else{echo '二';}  </php>" type="text" maxlength="2" style="height: 20px;width: 60px;">学期
+											第<select name="week" id="">
+
+											<foreach name="week" item="vo">
+												<option value="{$vo.id}">{$vo.name}</option>
+											</foreach>
+										</select>周
+											<select name="workday">
+												<php>
+													for($i=1;$i<=5;$i++){
+													if($i!=date('w')){
+													echo "<option value=".$i." >星期".$i."</option>";
+													}
+
+													if($i==date('w')){
+													echo "<option value=".$i." selected >星期".$i."</option>";
+													}
+													}
+
+												</php>
+
+											</select>
+
+											填报人：<input type="text" name="user"  readonly="readonly" value="{$user.user}">
+
+											<br>
+											<hr class="hr">
+											<table class="table center tab-color-blue table-bordered"  >
+												<thead>
+
+
+												<tr>
+													<td class="col-xs-1">时间</td>
+													<td class="col-xs-1">节数</td>
+													<td class="col-xs-2"  class="center">设备情况 </td>
+													<td class="col-xs-7" >异常情况</td></tr>
+												</thead>
+												<tbody>
+												<tr ><td rowspan="4">
+													<h3 style="vertical-align: middle !important;" class="">
+														<input type="hidden" value="上午" name="subtime[]">
+														上<br><br><br>午
+													</h3>
+												</td>
+													<td>1~2节 <input type="hidden" value="1" name="section[]"></td>
+													<td><select name="equipment[]" id="">
+														<option value="1">正常</option>
+														<option value="2">异常</option>
+														<option value="3">没课</option>
+													</select></td>
+
+
+													<td><input class="col-xs-12" id="error1"  type="text" placeholder="异常请填写" name="error[]"></td>
+
+												</tr>
+												<tr>
+													<td >3~4节<input type="hidden" value="2" name="section[]"></td>
+													<td><select name="equipment[]" id="">
+														<option value="1">正常</option>
+														<option value="2">异常</option>
+														<option value="3">没课</option>
+													</select></td>
+
+													<td>
+														<input class="col-xs-12" type="text" placeholder="异常请填写" name="error[]"></td>
+
+													</td>
+
+												</tr>
+												<tr>
+													<td>5~6节<input type="hidden" value="3" name="section[]"></td>
+													<td><select name="equipment[]" id="">
+														<option value="1">正常</option>
+														<option value="2">异常</option>
+														<option value="3">没课</option>
+													</select></td>
+
+													<td><input class="col-xs-12" type="text" placeholder="异常请填写" name="error[]"></td>
+
+												</tr>
+												<tr>
+													<td>其他事宜</td>
+													<td colspan="4" ><input name="other[]" placeholder="如临时请假，个人突发情况，参会..." type="text" class="col-xs-12" >
+													</td>
+												</tr>
+												<tr>
+													<td rowspan="3" style="vertical-align: middle !important;">
+														<input type="hidden" value="下午" name="subtime[]">
+														<h3>下 <br><br> 午</h3>
+													</td>
+													<td>7~8节<input type="hidden" value="4" name="section[]"></td>
+													<td><select name="equipment[]" id="">
+														<option value="1">正常</option>
+														<option value="2">异常</option>
+														<option value="3">没课</option>
+													</select></td>
+
+													<td><input class="col-xs-12" type="text" placeholder="异常请填写" name="error[]"></td>
+
+												</tr>
+												<tr>
+													<td>9~10节<input type="hidden" value="5" name="section[]"></td>
+													<td><select name="equipment[]" id="">
+														<option value="1">正常</option>
+														<option value="2">异常</option>
+														<option value="3">没课</option>
+													</select></td>
+
+													</td>
+													<td><input class="col-xs-12" type="text" placeholder="异常请填写" name="error[]"></td>
+												</tr>
+												<tr><td>其他事宜</td><td colspan="4" ><input name="other[]" placeholder="如临时请假，个人突发情况，参会..." class="col-xs-12"  type="text"></td></td></tr>
+												<tr>
+													<td rowspan="3" style="vertical-align: middle !important;">
+														<input type="hidden" value="晚上" name="subtime[]">
+														<h3>晚 <br> 上</h3>
+													</td>
+													<td>11~12<input type="hidden" value="6" name="section[]"></td>
+													<td><select name="equipment[]" id="">
+														<option value="1">正常</option>
+														<option value="2">异常</option>
+														<option value="3">没课</option>
+													</select></td>
+
+													<td><input class="col-xs-12" type="text" placeholder="异常请填写" name="error[]"></td>
+												</tr>
+												<tr>
+													<td>其他事宜</td><td  colspan="4" ><input name="other[]" placeholder="如临时请假，个人突发情况，参会..." class="col-xs-12"  type="text"></td></td>
+												</tr>
+
+												</tbody>
+												<tr>
+													<td class="red" style="vertical-align: middle !important;">日志图片上传 <br>
+														(必填)</td>
+													<td colspan="6"  style="position: relative;height: 100px;">
+
+														<div class="col-xs-11">
+															<div class="col-xs-2" style="width: 100px;height:100px;border-radius: 10px;background-color: grey">
+																<span style="position:absolute;top: 35px;left: 21px">点击添加 <br><font class="red">(单击删除)</font></span>
+																<input   type="file" id="arrimg" class="fcontent fhid"   required ;>
+															</div>
+
+															<div class="col-xs-10"  id="previewImg">
+																<img height="0"  width="0" src="" class="hidden" alt="" />
+															</div>
+														</div>
+
+
+
+													</td>
+												</tr>
+											</table>
+
+
+											<hr class="hr fa-in"/>
+
+											<input type="submit"  class="btn btn-info" value="提交" >
+											<input type="reset" class="btn btn-danger " value="重置" onclick="confirm('确定要重置吗？')" >
+										</form>
+								{$page}
+								</div>
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+			
+			
+			
+			</div>
+		</div>
+
+				<script>
+					$(document).ready(function () {
+
+
+						$('#arrimg').change(function () {
+
+							//console.log($('#arrimg').val())
+							var filePath = $(this).val()
+							fileFormat = filePath.substring(filePath.lastIndexOf('.')).toLowerCase()
+							imgBase64 = '' //存储图片的base64
+							maxSize = 2*1024*1024
+							fileObj = document.getElementById('arrimg').files[0]; //上传文件的对象,要这样写才行，用jquery写法获取不到对象
+							//console.log(fileObj.size)
+							//检查文件格式
+							if(!fileFormat.match(/.png|.jpg|.jpeg|.gif/)){
+								alert('文件类型错误,文件格式必须为:png/jpg/jpeg!')
+								return;
+							}
+							var len = $('#previewImg img').length,i=0;
+							//console.log(len)
+							$("#previewImg > img:first").before('<img src="" class="f" style="width: 200px;height: 200px"/>')
+
+							if(fileObj.size > maxSize){
+								//调用函数,对图片进行压缩
+								compress(fileObj,function (imgBase64) {
+									imgBase64 = imgBase64;
+									$("#previewImg  img:first").attr('src',imgBase64);
+
+								})
+							}else{
+								directTurnIntoBase64(fileObj,function (imgBase64) {
+									imgBase64 = imgBase64;
+									$("#previewImg > img:first").attr('src',imgBase64);
+
+									console.log('大小没超过2M,不同进行压缩')
+								});
+							}
+
+							//不对图片进行压缩
+							function directTurnIntoBase64(fileObj,callback) {
+								var r = new FileReader();
+								//转成base64
+								r.onload = function () {
+									imgBase64 = r.result;
+									//   console.log(imgBase64);
+									callback(imgBase64)
+								}
+								r.readAsDataURL(fileObj);//转成base64格式
+							}
+
+							function compress(fileObj,callback) {
+								if(typeof (FileReader) === 'undefined'){
+									console.log("当前浏览器内核不支持base64图片压缩")
+									directTurnIntoBase64(fileObj,callback);
+								}else{
+									try{
+										var reader = new FileReader();
+										reader.onload = function (e) {
+
+											var image = $("#previewImg > img:first")
+
+											image.load(function () {
+												var squareW = 700,//定义画布大小,也就是图片压缩之后的像素`
+														squareH = 600,
+														canvas = document.createElement('canvas'),
+														context = canvas.getContext('2d'),
+														imageWidth = 0, //压缩图片大小
+														imageHeight = 0,
+														offsetX = 0,
+														offsetY = 0,
+														data = '';
+												canvas.width = squareW;
+												canvas.height = squareH;
+												context.clearRect(0,0,squareW,squareH);
+
+												if(this.width > squareW){
+													imageWidth = Math.round(squareW);
+													imageHeight = squareH;
+													offsetX = Math.round((imageWidth-squareW)/2);
+												}else{
+													imageHeight = Math.round(squareH);
+													imageWidth = squareW;
+													offsetY = Math.round((imageHeight - squareH)/2)
+												}
+												context.drawImage(this,offsetX,offsetY,imageWidth,imageHeight);
+
+												var data = canvas.toDataURL('image/jpeg')
+												callback(data)
+											});
+
+											image.attr('src',e.target.result)
+
+
+										};
+
+										reader.readAsDataURL(fileObj);
+										//console.log(reader.readAsDataURL(fileObj));
+										console.log(fileObj);
+									}catch (e) {
+										console.log('压缩失败!')
+										//调用不压缩方法
+										directTurnIntoBase64(fileObj,callback)
+									}
+
+								}
+							}
+
+						})
+						$("input[type='submit']").click(function () {
+							alert("上传成功")
+							for (var i = 0; i<$(".f").length;i++){
+								var src = $(".f").eq(i).attr('src');
+								//console.log(src)
+								var index = src.indexOf(',');
+								var src1 = src.substring(index+1,src.length)
+								//console.log(src1)
+								var str = "<input type='hidden' name='base[]' value='"+src1+"'>"
+								$("#previewImg > img:last").before(str)
+							}
+						})
+						$('#previewImg').on('click',function () {
+							$('#previewImg .f').click(function () {
+								var res = confirm("确认删除吗");
+								if (res){
+									this.remove();
+									$("#arrimg").val('');
+								} else{
+									return
+								}
+
+							})
+						})
+
+					})
+
+				</script>
+	</body>
+</html>
